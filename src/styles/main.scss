@@ -1,5 +1,4 @@
 @use 'fonts';
-@use 'mixins';
 
 * {
   padding: 0;
@@ -7,10 +6,13 @@
 }
 
 body {
+  background-color: $grey-10-color;
   font-family: 'BR Sonoma Regular', sans-serif;
   color: $grey-100-color;
 }
 
-.button {
-  @include mixins.rounded-corners;
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
