@@ -1,0 +1,54 @@
+.footer {
+  background: $grey-100-color;
+  padding: 2rem;
+
+  .container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+
+    .logoDesktop {
+      display: none;
+      
+      @media (min-width: $breakpoint-desktop) {
+        display: block;
+      }
+    }
+
+    .logoMobile {
+      display: block;
+      
+      @media (min-width: $breakpoint-desktop) {
+        display: none;
+      }
+    }
+
+    .separator {
+      height: 1px;
+      width: 100%;
+      background: $grey-80-color;
+
+      @media (min-width: $breakpoint-desktop) {
+        display: none;
+      }
+    }
+
+    .text {
+      color: $grey-10-color;
+      font-size: 12px;
+
+      @media (min-width: $breakpoint-desktop) {
+        font-size: 14px;
+      }
+    }
+  }
+
+  @media (min-width: 768px) {
+    .container {
+      flex-direction: row;
+    }
+  }
+}
