@@ -1,8 +1,5 @@
-// Importar parciales
+@use 'fonts';
 @use 'mixins';
-
-// Estilos globales
-$primary-color: #3498db;
 
 * {
   padding: 0;
@@ -10,11 +7,10 @@ $primary-color: #3498db;
 }
 
 body {
-  font-family: Arial, sans-serif;
-  color: $primary-color;
+  font-family: 'BR Sonoma Regular', sans-serif;
+  color: $grey-100-color;
 }
 
 .button {
   @include mixins.rounded-corners;
-  background: $primary-color;
 }

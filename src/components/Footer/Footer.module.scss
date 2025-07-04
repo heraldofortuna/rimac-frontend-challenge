@@ -10,19 +10,21 @@
     justify-content: space-between;
     gap: 2rem;
 
-    .logoDesktop {
-      display: none;
-      
-      @media (min-width: $breakpoint-desktop) {
+    .logo {
+      &--mobile {
         display: block;
+        
+        @media (min-width: $breakpoint-desktop) {
+          display: none;
+        }
       }
-    }
 
-    .logoMobile {
-      display: block;
-      
-      @media (min-width: $breakpoint-desktop) {
+      &--desktop {
         display: none;
+        
+        @media (min-width: $breakpoint-desktop) {
+          display: block;
+        }
       }
     }
 
