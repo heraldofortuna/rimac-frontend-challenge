@@ -1,0 +1,36 @@
+.inputfield {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 16px;
+  border: 1px solid $grey-60-color;
+  border-radius: 8px;
+
+  &__label {
+    color: $grey-60-color;
+    font-size: 12px;
+    line-height: 16px;
+  }
+
+  &__input {
+    background-color: transparent;
+    font-size: 16px;
+    line-height: 24px;
+    border: 0;
+
+    &:focus {
+      border: 0;
+      outline: 0;
+    }
+
+    &[type="number"] {
+      -moz-appearance: textfield;
+      appearance: textfield;
+
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+    }
+  }
+}
