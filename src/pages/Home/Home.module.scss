@@ -1,9 +1,10 @@
 .home {
+  padding: 0 1.75rem;
+
   .container {
     display: flex;
     flex-direction: column;
     gap: 24px;
-    padding: 0 1.75rem;
 
     @media (min-width: $breakpoint-desktop) {
       flex-direction: row;

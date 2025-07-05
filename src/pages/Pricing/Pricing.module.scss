@@ -1,0 +1,139 @@
+.pricing {
+  font-family: $lato-font;
+  padding: 2rem 1.75rem;
+
+  @media (min-width: $breakpoint-desktop) {
+    padding: 2.5rem 1.75rem;
+  }
+
+  .container {
+    max-width: 928px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin: 0 auto;
+
+    .stepper {
+      &--mobile {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+
+        @media (min-width: $breakpoint-desktop) {
+          display: none;
+        }
+
+        &__text {
+          font-size: 10px;
+          font-weight: 900;
+          line-height: 16px;
+          letter-spacing: 0.8px;
+          text-transform: uppercase;
+        }
+      }
+
+      &--desktop {
+        display: none;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+
+        &__line {
+          width: 2rem;
+          border: 2px dashed $blue-berry-600-color;
+          border-radius: 2rem;
+        }
+
+        &__step {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+
+          &__number {
+            width: 1.5rem;
+            height: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 700;
+            line-height: 16px;
+            border: 1px solid $neutrals-600-color;
+            border-radius: 24px;
+
+            &--first {
+              color: $neutrals-0-color;
+              background-color: $blue-berry-600-color;
+              border: 0;
+            }
+          }
+
+          &--first {
+            color: $neutrals-700-color;
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 24px;
+          }
+        }
+
+        @media (min-width: $breakpoint-desktop) {
+          display: flex;
+        }
+      }
+    }
+
+    .backButton {
+      text-decoration: none;
+      display: none;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+
+      @media (min-width: $breakpoint-desktop) {
+        display: flex;
+      }
+
+      &__text {
+        color: $blue-berry-600-color;
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 20px;
+      }
+    }
+
+    .content {
+      &__text {
+        color: $neutrals-700-color;
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        @media (min-width: $breakpoint-desktop) {
+          width: 544px;
+          text-align: center;
+          padding: 54px 0 0 0;
+          margin: 0 auto;
+        }
+
+        &__title {
+          font-size: 28px;
+          font-weight: 700;
+          line-height: 36px;
+
+          @media (min-width: $breakpoint-desktop) {
+            font-size: 40px;
+            line-height: 48px;
+          }
+        }
+
+        &__description {
+          font-size: 16px;
+          font-weight: 400;
+          line-height: 28px;
+          letter-spacing: 0.1px;
+        }
+      }
+    }
+  }
+}
