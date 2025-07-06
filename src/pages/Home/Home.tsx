@@ -26,7 +26,7 @@ const Home: React.FC = () => {
   }
 
   const handleQuote = async () => {
-    const userData = await fetchUser();
+    const userData = await fetchUser(document, phone);
 
     if (!userData) return;
 

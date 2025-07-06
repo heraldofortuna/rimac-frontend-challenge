@@ -38,6 +38,22 @@ const Pricing: React.FC = () => {
     }
   ];
 
+  const handlePlanClick = (plan: Plan) => {
+    if (!userData) return;
+
+    const summaryData = {
+      ...userData,
+      plan: plan,
+    }
+
+    navigate('/summary', { 
+      state: { 
+        summaryData,
+        timestamp: new Date().toISOString()
+      } satisfies NavigationState
+    });
+  }
+
   useEffect(() => {
     const state = location.state as NavigationState | undefined;
 
@@ -82,7 +98,9 @@ const Pricing: React.FC = () => {
             <img src={BackArrowGrayIcon} alt="Volver" />
           </a>
           <p className={styles['stepper--mobile__text']}>Paso 1 de 2</p>
-          <div className={styles['stepper--mobile__bar']}></div>
+          <div className={styles['stepper--mobile__bar']}>
+            <span className={styles['stepper--mobile__bar--fill']}></span>
+          </div>
         </div>
 
         <div className={styles['stepper--desktop']}>
@@ -92,7 +110,7 @@ const Pricing: React.FC = () => {
           </div>
           <span className={styles['stepper--desktop__line']}></span>
           <div className={`${styles['stepper--desktop__step']} ${styles['stepper--desktop__step--second']}`}>
-            <span className={styles['stepper--desktop__step__number']}>2</span>
+            <span className={`${styles['stepper--desktop__step__number']} ${styles['stepper--desktop__step__number--second']}`}>2</span>
             <p>Resumen</p>
           </div>
         </div>
@@ -147,7 +165,7 @@ const Pricing: React.FC = () => {
                           ))}
                         </ul>
                         <div className={styles.plan__button}>
-                          <Button text="Seleccionar Plan" color='red' />
+                          <Button text="Seleccionar Plan" color='red' onClick={() => handlePlanClick(plan)} />
                         </div>
                       </div>
                     </Card>

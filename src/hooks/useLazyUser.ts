@@ -8,14 +8,16 @@ const useLazyUser = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<Error | null>(null);
 
-  const fetchUser = async () => {
+  const fetchUser = async (document: string, phone: string) => {
     try {
       setLoading(true);
       const data = await UserService.getUser();
       const userData = { 
         name: data.name,
         lastName: data.lastName,
-        age: calculateAge(data.birthDay)
+        age: calculateAge(data.birthDay),
+        document: document,
+        phone: phone, 
       };
       setUser(userData);
       return userData;
