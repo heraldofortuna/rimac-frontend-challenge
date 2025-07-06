@@ -19,6 +19,7 @@ exports[`Card component > matches snapshot for selectable card 1`] = `
   >
     <span
       class="_card__circle_526f9d"
+      data-testid="selection-circle"
     />
     <div>
       Card Content

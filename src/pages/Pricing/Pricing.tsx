@@ -1,27 +1,38 @@
 import BackArrowBlueIcon from "@assets/back-arrow-blue.svg";
 import BackArrowGrayIcon from "@assets/back-arrow-gray.svg";
+import NextArrowBlueIcon from "@assets/next-arrow-blue.svg";
+import NextArrowGrayIcon from "@assets/next-arrow-gray.svg";
 import PersonalOptionIcon from "@assets/personal-option.svg";
 import OtherPersonOptionIcon from "@assets/other-person-option.svg";
-import styles from "./Pricing.module.scss";
-import { useLocation, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
-import type { NavigationState } from "../../types/custom/navigation";
-import type { User } from "../../types/api/user";
-import { useLazyPlans } from "../../hooks/useLazyPlans";
+import { usePlans } from "../../hooks/usePlans";
 import Card from "../../components/Card";
 import Button from "../../components/Button";
 import Selector from "../../components/Selector";
+import Loader from "../../components/Loader/Loader";
 import type { Plan, Plans } from "../../types/api/plans";
+import type { NavigationState } from "../../types/custom/navigation";
+import type { User } from "../../types/api/user";
+import styles from "./Pricing.module.scss";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination, Navigation } from 'swiper/modules';
+import { useLocation, useNavigate } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
 const Pricing: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { fetchPlans } = useLazyPlans();
+  const { plans, loading: isLoadingPlans } = usePlans();
   const [userData, setUserData] = useState<User | null>(null);
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
   const [selectedPlans, setSelectedPlans] = useState<Plans | null>(null);
   const [isForSomeone, setIsForSomeone] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [totalSlides, setTotalSlides] = useState(0);
+  const swiperRef = useRef(null);
 
   const options = [
     {
@@ -73,13 +84,18 @@ const Pricing: React.FC = () => {
 
   useEffect(() => {
     const loadPlans = async () => {
-      const plans = await fetchPlans();
-
       if (plans && userData) {
         const selectedPlans = plans.filter(
           (plan: Plan) => userData.age < plan.age,
         );
         setSelectedPlans(selectedPlans);
+        
+        setTimeout(() => {
+          document.getElementById('plansContainer')?.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }, 100);
       }
     };
 
@@ -87,16 +103,15 @@ const Pricing: React.FC = () => {
       setIsForSomeone(selectedOption === "for-someone");
       loadPlans();
     }
-  }, [selectedOption, fetchPlans, userData]);
+  }, [selectedOption, userData]);
 
-  if (isLoading) {
-    return <div className={styles.loading}>Cargando datos...</div>;
+  if (isLoading || isLoadingPlans) {
+    return <Loader />;
   }
 
-  if (!userData) {
-    return (
-      <div className={styles.error}>No se encontraron datos del usuario</div>
-    );
+  if (!userData || !plans) {
+    navigate("/404");
+    return;
   }
 
   return (
@@ -162,10 +177,54 @@ const Pricing: React.FC = () => {
           </div>
 
           {selectedPlans && (
-            <div className={styles.plansContainer}>
-              <ul className={styles.plans}>
+            <div id="plansContainer" className={styles.plansContainer}>
+              <Swiper
+                ref={swiperRef}
+                modules={[Navigation, Pagination]}
+                 onSlideChange={(swiper) => {
+                  setCurrentSlide(swiper.realIndex + 1);
+                  setTotalSlides(swiper.slides.length);
+                }}
+                onInit={(swiper) => {
+                  setCurrentSlide(1);
+                  setTotalSlides(swiper.slides.length);
+                }}
+                navigation={{
+                  nextEl: '.swiper-button-next',
+                  prevEl: '.swiper-button-prev',
+                }}
+                pagination={{
+                  el: '.custom-pagination',
+                  type: 'custom',
+                  renderCustom: (_, current, total) => {
+                    return `<div class="${styles.paginationContainer}">
+                      <span class="${styles.paginationArrow}">&lt;</span>
+                      <span class="${styles.paginationNumbers}">${current}/${total}</span>
+                      <span class="${styles.paginationArrow}">&gt;</span>
+                    </div>`;
+                  }
+                }}
+                breakpoints={{
+                  320: { 
+                    slidesPerView: 1.1,
+                    spaceBetween: 16,
+                    navigation: false
+                  },
+                  768: { 
+                    slidesPerView: 2.1,
+                    spaceBetween: 20,
+                    navigation: false
+                  },
+                  1024: { 
+                    slidesPerView: 3,
+                    spaceBetween: 24,
+                    navigation: true
+                  }
+                }}
+                className={styles.plansSlider}
+              >
                 {selectedPlans.map((plan) => (
-                  <li key={plan.id} className={styles.planElement}>
+                  <SwiperSlide key={plan.id} className={styles.planSlide}>
                     <Card>
                       <div className={styles.plan}>
                         <div className={styles.plan__header}>
@@ -179,26 +238,20 @@ const Pricing: React.FC = () => {
                             <p className={styles.plan__header__cost__label}>
                               Costo del plan
                             </p>
-                            {isForSomeone ? (
+                            {isForSomeone && (
                               <p className={styles.plan__header__cost__past}>
                                 ${plan.price} antes
                               </p>
-                            ) : (
-                              <></>
                             )}
                             <p className={styles.plan__header__cost__value}>
-                              ${isForSomeone ? plan.discountPrice : plan.price}{" "}
-                              al mes
+                              ${isForSomeone ? plan.discountPrice : plan.price} al mes
                             </p>
                           </div>
                         </div>
                         <span className={styles.plan__separator}></span>
                         <ul className={styles.plan__list}>
                           {plan.description.map((item) => (
-                            <li
-                              key={item}
-                              className={styles.plan__list__element}
-                            >
+                            <li key={item} className={styles.plan__list__element}>
                               <p>{item}</p>
                             </li>
                           ))}
@@ -212,9 +265,37 @@ const Pricing: React.FC = () => {
                         </div>
                       </div>
                     </Card>
-                  </li>
+                  </SwiperSlide>
                 ))}
-              </ul>
+
+                <div className={styles.customPagination}>
+                  <span 
+                    className={styles.paginationArrow}
+                    onClick={() => swiperRef.current?.swiper.slidePrev()}
+                  >
+                    <img
+                      src={currentSlide === 1 ? BackArrowGrayIcon : BackArrowBlueIcon}
+                      width={32}
+                      height={32}
+                      alt="Vamos al plan anterior"
+                    />
+                  </span>
+                  <span className={styles.paginationNumbers}>
+                    {currentSlide} / {totalSlides}
+                  </span>
+                  <span 
+                    className={styles.paginationArrow}
+                    onClick={() => swiperRef.current?.swiper.slideNext()}
+                  >
+                    <img
+                      src={currentSlide === totalSlides ? NextArrowGrayIcon : NextArrowBlueIcon}
+                      width={32}
+                      height={32}
+                      alt="Vamos al siguiente plan"
+                    />
+                  </span>
+                </div>
+              </Swiper>
             </div>
           )}
         </div>

@@ -24,7 +24,7 @@ const Button: React.FC<IButtonProps> = ({
     >
       {isLoading ? (
         <>
-          <span className={styles.loader}></span>
+          <span className={styles.loader} data-testid="button-loader"></span>
           {loadingText}
         </>
       ) : (

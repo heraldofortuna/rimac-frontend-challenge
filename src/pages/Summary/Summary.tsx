@@ -1,13 +1,14 @@
 import BackArrowBlueIcon from "@assets/back-arrow-blue.svg";
 import BackArrowGrayIcon from "@assets/back-arrow-gray.svg";
 import PeopleIcon from "@assets/people.svg";
+import Card from "../../components/Card";
+import Loader from "../../components/Loader/Loader";
+import type { NavigationState, Summary } from "../../types/custom/navigation";
 import styles from "./Summary.module.scss";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import type { NavigationState, Summary } from "../../types/custom/navigation";
-import Card from "../../components/Card";
 
-const Summary: React.FC = () => {
+const SummaryPage: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [summaryData, setSummaryData] = useState<Summary | null>(null);
@@ -43,13 +44,12 @@ const Summary: React.FC = () => {
   }, [location.state, navigate]);
 
   if (isLoading) {
-    return <div className={styles.loading}>Cargando datos...</div>;
+    return <Loader />;
   }
 
   if (!summaryData) {
-    return (
-      <div className={styles.error}>No se encontraron datos del seguro</div>
-    );
+    navigate("/404");
+    return;
   }
 
   return (
@@ -146,4 +146,4 @@ const Summary: React.FC = () => {
   );
 };
 
-export default Summary;
+export default SummaryPage;

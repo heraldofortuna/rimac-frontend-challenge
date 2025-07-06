@@ -1,0 +1,40 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Button Component > matches snapshot when disabled 1`] = `
+<DocumentFragment>
+  <button
+    class="_button_ee73f7 _medium_ee73f7 _black_ee73f7 _disabled_ee73f7 "
+    disabled=""
+    type="button"
+  >
+    Test Button
+  </button>
+</DocumentFragment>
+`;
+
+exports[`Button Component > matches snapshot when loading 1`] = `
+<DocumentFragment>
+  <button
+    class="_button_ee73f7 _medium_ee73f7 _black_ee73f7  _loading_ee73f7"
+    disabled=""
+    type="button"
+  >
+    <span
+      class="_loader_ee73f7"
+      data-testid="button-loader"
+    />
+    Cargando
+  </button>
+</DocumentFragment>
+`;
+
+exports[`Button Component > matches snapshot with default props 1`] = `
+<DocumentFragment>
+  <button
+    class="_button_ee73f7 _medium_ee73f7 _black_ee73f7  "
+    type="button"
+  >
+    Test Button
+  </button>
+</DocumentFragment>
+`;

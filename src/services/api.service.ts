@@ -8,7 +8,6 @@ import axios, {
 const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const createApiService = () => {
-  // Crear instancia de Axios
   const instance: AxiosInstance = axios.create({
     baseURL: BASE_URL,
     timeout: 10000,
@@ -67,5 +66,4 @@ const createApiService = () => {
   };
 };
 
-// Exportar una instancia única del servicio (singleton)
 export const apiService = createApiService();

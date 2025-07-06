@@ -9,9 +9,10 @@ const Card: React.FC<ICardProps> = ({
   onClick = () => {},
 }) => {
   const cardClasses = `${styles.card} ${isSelectable ? styles.selectable : ""} ${isSelected ? styles.selected : ""}`;
+  const handleClick = isSelectable ? onClick : undefined;
 
   return (
-    <div className={cardClasses} onClick={onClick}>
+    <div className={cardClasses} onClick={handleClick}>
       {isSelectable ? (
         isSelected ? (
           <img
@@ -20,7 +21,7 @@ const Card: React.FC<ICardProps> = ({
             className={styles.card__check}
           />
         ) : (
-          <span className={styles.card__circle}></span>
+          <span className={styles.card__circle} data-testid="selection-circle"></span>
         )
       ) : (
         <></>
