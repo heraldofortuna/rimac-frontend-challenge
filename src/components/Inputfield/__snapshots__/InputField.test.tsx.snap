@@ -1,0 +1,48 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`InputField component > matches snapshot with default props 1`] = `
+<DocumentFragment>
+  <div
+    class="_inputfield_93fded"
+  >
+    <label
+      class="_inputfield__label_93fded"
+      for="test-input"
+    >
+      Test Label
+    </label>
+    <input
+      autocomplete="off"
+      class="_inputfield__input_93fded"
+      id="test-input"
+      name="test-input"
+      type="text"
+      value=""
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`InputField component > matches snapshot with value and maxLength 1`] = `
+<DocumentFragment>
+  <div
+    class="_inputfield_93fded"
+  >
+    <label
+      class="_inputfield__label_93fded"
+      for="test-input"
+    >
+      Test Label
+    </label>
+    <input
+      autocomplete="off"
+      class="_inputfield__input_93fded"
+      id="test-input"
+      maxlength="20"
+      name="test-input"
+      type="text"
+      value="test value"
+    />
+  </div>
+</DocumentFragment>
+`;

@@ -1,0 +1,45 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Card component > matches snapshot for non-selectable card 1`] = `
+<DocumentFragment>
+  <div
+    class="_card_526f9d  "
+  >
+    <div>
+      Card Content
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Card component > matches snapshot for selectable card 1`] = `
+<DocumentFragment>
+  <div
+    class="_card_526f9d _selectable_526f9d "
+  >
+    <span
+      class="_card__circle_526f9d"
+    />
+    <div>
+      Card Content
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Card component > matches snapshot for selected card 1`] = `
+<DocumentFragment>
+  <div
+    class="_card_526f9d _selectable_526f9d _selected_526f9d"
+  >
+    <img
+      alt="Card seleccionado"
+      class="_card__check_526f9d"
+      src="data:image/svg+xml,%3csvg%20width='24'%20height='24'%20viewBox='0%200%2024%2024'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M12%200C5.4%200%200%205.4%200%2012C0%2018.6%205.4%2024%2012%2024C18.6%2024%2024%2018.6%2024%2012C24%205.4%2018.6%200%2012%200Z'%20fill='%23389E0D'/%3e%3cpath%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M17.1813%207.11293C17.5607%207.434%2017.6081%208.00188%2017.287%208.38133L10.687%2016.1813C10.5215%2016.3769%2010.2806%2016.4927%2010.0245%2016.4996C9.76844%2016.5066%209.52153%2016.4042%209.34564%2016.2179L5.94564%2012.6179C5.60435%2012.2566%205.62063%2011.687%205.98199%2011.3457C6.34336%2011.0044%206.91297%2011.0207%207.25427%2011.382L9.96311%2014.2502L15.9129%207.21863C16.234%206.83919%2016.8019%206.79187%2017.1813%207.11293Z'%20fill='white'/%3e%3c/svg%3e"
+    />
+    <div>
+      Card Content
+    </div>
+  </div>
+</DocumentFragment>
+`;

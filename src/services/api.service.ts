@@ -22,9 +22,6 @@ const createApiService = () => {
   const setupInterceptors = () => {
     instance.interceptors.request.use(
       (config: import("axios").InternalAxiosRequestConfig) => {
-        // Aquí puedes añadir lógica común para todas las requests
-        // Ej: añadir token de autenticación
-        // config.headers.Authorization = `Bearer ${token}`;
         return config;
       },
       (error: AxiosError) => Promise.reject(error),
@@ -63,13 +60,10 @@ const createApiService = () => {
     return response.data;
   };
 
-  // Inicializar
   setupInterceptors();
 
-  // Retornar métodos públicos
   return {
     get,
-    // Puedes añadir más métodos aquí (post, put, delete, etc.)
   };
 };
 

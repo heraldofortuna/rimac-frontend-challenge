@@ -1,0 +1,40 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`CheckBox component > matches snapshot when checked 1`] = `
+<DocumentFragment>
+  <label
+    class="_checkbox_b4c44f"
+  >
+    <span>
+      Test Checkbox
+    </span>
+    <input
+      checked=""
+      class="_checkbox__input_b4c44f"
+      type="checkbox"
+    />
+    <span
+      class="_checkbox__checkmark_b4c44f"
+    />
+  </label>
+</DocumentFragment>
+`;
+
+exports[`CheckBox component > matches snapshot when unchecked 1`] = `
+<DocumentFragment>
+  <label
+    class="_checkbox_b4c44f"
+  >
+    <span>
+      Test Checkbox
+    </span>
+    <input
+      class="_checkbox__input_b4c44f"
+      type="checkbox"
+    />
+    <span
+      class="_checkbox__checkmark_b4c44f"
+    />
+  </label>
+</DocumentFragment>
+`;

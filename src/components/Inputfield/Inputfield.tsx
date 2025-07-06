@@ -18,13 +18,22 @@ const InputField: React.FC<IInputFieldProps> = ({
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = event.target.value;
-    if (maxLength && newValue.length > maxLength) return;
+    if (maxLength && newValue.length > maxLength) {
+      const truncatedEvent = {
+        ...event,
+        target: {
+          ...event.target,
+          value: newValue.slice(0, maxLength)
+        }
+      };
+      
+      setValue(truncatedEvent.target.value);
+      onChange?.(truncatedEvent);
+      return;
+    }
 
     setValue(newValue);
-
-    if (onChange) {
-      onChange(event);
-    }
+    onChange?.(event);
   };
 
   return (
@@ -33,6 +42,7 @@ const InputField: React.FC<IInputFieldProps> = ({
         {label}
       </label>
       <input
+        id={name}
         name={name}
         type={type}
         value={value}
