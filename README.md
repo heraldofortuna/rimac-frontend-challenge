@@ -29,25 +29,6 @@ npm run dev
 
 Finalmente, ingresamos al siguiente enlace para poder ver en vivo nuestro proyecto en desarrollo.
 
----
-
-## 📸 Capturas de pantalla y demostraciones
-
-Aquí puedes ver algunas imágenes y videos del proyecto en acción.
-
-### Demostración en video
-
-Mira este video para una demostración rápida de las funcionalidades clave.
-[![Demostración rápida de las funcionalidades clave en tamaño mobile](assets/thumbnail.png)](assets/demo-mobile.mp4 "Demostración rápida de las funcionalidades clave en tamaño mobile")
-
-[![Demostración rápida de las funcionalidades clave](assets/thumbnail.png)](assets/demo-desktop.mp4 "Demostración rápida de las funcionalidades clave")
-
-### Cobertura de pruebas unitarias
-
-Esta imagen muestra la cobertura de código que se tiene en el proyecto.
-![Cobertura de código](assets/coverage.png "Cobertura de código")
----
-
 ## 🧪 Testing
 
 El proyecto incluye pruebas unitarias y de integración configuradas con Vitest y Testing Library.
@@ -73,6 +54,8 @@ npm run test:coverage
 ```
 
 Esto generará un reporte en la carpeta coverage que puedes abrir en tu navegador.
+
+![Cobertura de código](/src/assets/coverage.png "Cobertura de código")
 
 ## 🛠️ Construido con
 
