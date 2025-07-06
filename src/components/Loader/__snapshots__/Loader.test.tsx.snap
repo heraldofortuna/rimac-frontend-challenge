@@ -1,0 +1,15 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Loader Component > matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="_loaderContainer_0c7d59"
+    data-testid="loader-container"
+  >
+    <div
+      class="_loader_0c7d59"
+      data-testid="loader-element"
+    />
+  </div>
+</DocumentFragment>
+`;

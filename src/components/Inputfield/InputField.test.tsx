@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { render, screen, fireEvent } from "@testing-library/react";
-import InputField from "./InputField";
 import type { IInputFieldProps } from "../../types/components/inputfield";
+import InputField from "./InputField";
 
 describe("InputField component", () => {
   const defaultProps: IInputFieldProps = {

@@ -8,12 +8,13 @@ import { usePlans } from "../../hooks/usePlans";
 import Card from "../../components/Card";
 import Button from "../../components/Button";
 import Selector from "../../components/Selector";
-import Loader from "../../components/Loader/Loader";
+import Loader from "../../components/Loader";
 import type { Plan, Plans } from "../../types/api/plans";
 import type { NavigationState } from "../../types/custom/navigation";
 import type { User } from "../../types/api/user";
 import styles from "./Pricing.module.scss";
 import { Swiper, SwiperSlide } from 'swiper/react';
+import type { SwiperRef } from 'swiper/react';
 import { Pagination, Navigation } from 'swiper/modules';
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
@@ -32,7 +33,7 @@ const Pricing: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [totalSlides, setTotalSlides] = useState(0);
-  const swiperRef = useRef(null);
+  const swiperRef = useRef<SwiperRef | null>(null);
 
   const options = [
     {
@@ -188,6 +189,11 @@ const Pricing: React.FC = () => {
                 onInit={(swiper) => {
                   setCurrentSlide(1);
                   setTotalSlides(swiper.slides.length);
+                }}
+                onSwiper={(swiper) => {
+                  if (swiperRef.current) {
+                    swiperRef.current.swiper = swiper;
+                  }
                 }}
                 navigation={{
                   nextEl: '.swiper-button-next',

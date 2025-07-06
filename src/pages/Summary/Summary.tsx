@@ -2,7 +2,7 @@ import BackArrowBlueIcon from "@assets/back-arrow-blue.svg";
 import BackArrowGrayIcon from "@assets/back-arrow-gray.svg";
 import PeopleIcon from "@assets/people.svg";
 import Card from "../../components/Card";
-import Loader from "../../components/Loader/Loader";
+import Loader from "../../components/Loader";
 import type { NavigationState, Summary } from "../../types/custom/navigation";
 import styles from "./Summary.module.scss";
 import { useLocation, useNavigate } from "react-router-dom";

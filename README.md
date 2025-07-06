@@ -38,18 +38,48 @@ Aquí puedes ver algunas imágenes y videos del proyecto en acción.
 ### Demostración en video
 
 Mira este video para una demostración rápida de las funcionalidades clave.
-[![Demostración rápida de las funcionalidades clave](assets/youtube-thumbnail.jpg)](https://www.youtube.com/watch?v=YOUR_VIDEO_ID "Demostración rápida de las funcionalidades clave")
-### Rendimiento de la página
+[![Demostración rápida de las funcionalidades clave en tamaño mobile](assets/thumbnail.png)](assets/demo-mobile.mp4 "Demostración rápida de las funcionalidades clave en tamaño mobile")
 
-Esta imagen muestra el rendimiento otorgado por Lighthouse de la aplicación.
-![Rendimiento otorgado por Lighthouse](assets/lighthouse-performance.png "Rendimiento de la aplicación")
+[![Demostración rápida de las funcionalidades clave](assets/thumbnail.png)](assets/demo-desktop.mp4 "Demostración rápida de las funcionalidades clave")
+
+### Cobertura de pruebas unitarias
+
+Esta imagen muestra la cobertura de código que se tiene en el proyecto.
+![Cobertura de código](assets/coverage.png "Cobertura de código")
 ---
+
+## 🧪 Testing
+
+El proyecto incluye pruebas unitarias y de integración configuradas con Vitest y Testing Library.
+
+Para ejecutar todas las pruebas:
+
+```
+npm run test
+```
+
+Ejecutar pruebas en modo watch:
+
+```
+npm run test:watch
+```
+
+### Generar reporte de coverage
+
+Para ejecutar las pruebas y generar un reporte de cobertura:
+
+```
+npm run test:coverage
+```
+
+Esto generará un reporte en la carpeta coverage que puedes abrir en tu navegador.
 
 ## 🛠️ Construido con
 
 - [React](https://v3.vuejs.org/) - El framework de frontend web que usamos.
 - [Vite](https://vite.dev/) - Servidor de desarrollo y un compilador de código frontend.
 - [Sass](https://sass-lang.com/) - Preprocesador de CSS usado.
+- [Vitest](https://vitest.dev/) - El framework de pruebas para la aplicación.
 
 ## ✒️ Autores
 
