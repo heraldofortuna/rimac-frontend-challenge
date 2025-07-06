@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import type { IInputFieldProps } from "../../types/components/inputfield";
-import styles from "./InputField.module.scss";
+import styles from "./Inputfield.module.scss";
 
-const InputField: React.FC<IInputFieldProps> = ({
+const Inputfield: React.FC<IInputFieldProps> = ({
   name,
   type = "text",
   label,
@@ -55,4 +55,4 @@ const InputField: React.FC<IInputFieldProps> = ({
   );
 };
 
-export default InputField;
+export default Inputfield;
