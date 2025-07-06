@@ -1,6 +1,6 @@
 import FamilyImage from "@assets/family.png";
 import Button from "../../components/Button";
-import InputField from "../../components/InputField";
+import InputField from "../../components/Inputfield";
 import useLazyUser from "../../hooks/useLazyUser";
 import styles from "./Home.module.scss";
 import { useNavigate } from "react-router-dom";
