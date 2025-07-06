@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import { UserService } from '../services/user.service';
-import type { User } from '../types/api/user';
-import { calculateAge } from '../utils/calculateAge';
+import { useState } from "react";
+import { UserService } from "../services/user.service";
+import type { User } from "../types/api/user";
+import { calculateAge } from "../utils/calculateAge";
 
 const useLazyUser = () => {
   const [user, setUser] = useState<User | null>(null);
@@ -12,12 +12,12 @@ const useLazyUser = () => {
     try {
       setLoading(true);
       const data = await UserService.getUser();
-      const userData = { 
+      const userData = {
         name: data.name,
         lastName: data.lastName,
         age: calculateAge(data.birthDay),
         document: document,
-        phone: phone, 
+        phone: phone,
       };
       setUser(userData);
       return userData;

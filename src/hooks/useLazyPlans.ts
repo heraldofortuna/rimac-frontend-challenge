@@ -14,12 +14,14 @@ export const useLazyPlans = () => {
     setError(null);
     try {
       const plansData = await PlansService.getPlans();
-      const plansList = plansData.list.map((plan: PlanResponse, idx: number) => ({ 
-        id: String(idx),
-        icon: plan.name.includes("Clínica") ? HospitalIcon : HomeIcon,
-        discountPrice: 0.95 * plan.price,
-        ...plan 
-      }));
+      const plansList = plansData.list.map(
+        (plan: PlanResponse, idx: number) => ({
+          id: String(idx),
+          icon: plan.name.includes("Clínica") ? HospitalIcon : HomeIcon,
+          discountPrice: 0.95 * plan.price,
+          ...plan,
+        }),
+      );
       setPlans(plansList);
       return plansList;
     } catch (err) {

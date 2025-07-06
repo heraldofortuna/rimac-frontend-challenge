@@ -1,11 +1,11 @@
-import BackArrowBlueIcon from '@assets/back-arrow-blue.svg';
-import BackArrowGrayIcon from '@assets/back-arrow-gray.svg';
-import PeopleIcon from '@assets/people.svg';
-import styles from './Summary.module.scss';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import type { NavigationState, Summary } from '../../types/custom/navigation';
-import Card from '../../components/Card';
+import BackArrowBlueIcon from "@assets/back-arrow-blue.svg";
+import BackArrowGrayIcon from "@assets/back-arrow-gray.svg";
+import PeopleIcon from "@assets/people.svg";
+import styles from "./Summary.module.scss";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import type { NavigationState, Summary } from "../../types/custom/navigation";
+import Card from "../../components/Card";
 
 const Summary: React.FC = () => {
   const navigate = useNavigate();
@@ -16,8 +16,8 @@ const Summary: React.FC = () => {
   const handleReturn = () => {
     if (!summaryData) return;
 
-    navigate('/pricing', { 
-      state: { 
+    navigate("/pricing", {
+      state: {
         userData: {
           name: summaryData.name,
           lastName: summaryData.lastName,
@@ -25,20 +25,20 @@ const Summary: React.FC = () => {
           document: summaryData.document,
           phone: summaryData.phone,
         },
-        timestamp: new Date().toISOString()
-      } satisfies NavigationState
+        timestamp: new Date().toISOString(),
+      } satisfies NavigationState,
     });
-  }
+  };
 
   useEffect(() => {
     const state = location.state as NavigationState | undefined;
 
     if (!state?.summaryData) {
-      navigate('/');
+      navigate("/");
       return;
     }
 
-    setSummaryData(state.summaryData)
+    setSummaryData(state.summaryData);
     setIsLoading(false);
   }, [location.state, navigate]);
 
@@ -47,30 +47,47 @@ const Summary: React.FC = () => {
   }
 
   if (!summaryData) {
-    return <div className={styles.error}>No se encontraron datos del seguro</div>;
+    return (
+      <div className={styles.error}>No se encontraron datos del seguro</div>
+    );
   }
 
   return (
     <>
       <div className={styles.stepper}>
-        <div className={styles['stepper--mobile']}>
-          <div className={styles['stepper--mobile__icon']} onClick={handleReturn}>
+        <div className={styles["stepper--mobile"]}>
+          <div
+            className={styles["stepper--mobile__icon"]}
+            onClick={handleReturn}
+          >
             <img src={BackArrowGrayIcon} alt="Volver" />
           </div>
-          <p className={styles['stepper--mobile__text']}>Paso 2 de 2</p>
-          <div className={styles['stepper--mobile__bar']}>
-            <span className={styles['stepper--mobile__bar--fill']}></span>
+          <p className={styles["stepper--mobile__text"]}>Paso 2 de 2</p>
+          <div className={styles["stepper--mobile__bar"]}>
+            <span className={styles["stepper--mobile__bar--fill"]}></span>
           </div>
         </div>
 
-        <div className={styles['stepper--desktop']}>
-          <div className={`${styles['stepper--desktop__step']} ${styles['stepper--desktop__step--first']}`}>
-            <span className={`${styles['stepper--desktop__step__number']} ${styles['stepper--desktop__step__number--first']}`}>1</span>
+        <div className={styles["stepper--desktop"]}>
+          <div
+            className={`${styles["stepper--desktop__step"]} ${styles["stepper--desktop__step--first"]}`}
+          >
+            <span
+              className={`${styles["stepper--desktop__step__number"]} ${styles["stepper--desktop__step__number--first"]}`}
+            >
+              1
+            </span>
             <p>Planes y coberturas</p>
           </div>
-          <span className={styles['stepper--desktop__line']}></span>
-          <div className={`${styles['stepper--desktop__step']} ${styles['stepper--desktop__step--second']}`}>
-            <span className={`${styles['stepper--desktop__step__number']} ${styles['stepper--desktop__step__number--second']}`}>2</span>
+          <span className={styles["stepper--desktop__line"]}></span>
+          <div
+            className={`${styles["stepper--desktop__step"]} ${styles["stepper--desktop__step--second"]}`}
+          >
+            <span
+              className={`${styles["stepper--desktop__step__number"]} ${styles["stepper--desktop__step__number--second"]}`}
+            >
+              2
+            </span>
             <p>Resumen</p>
           </div>
         </div>
@@ -87,21 +104,38 @@ const Summary: React.FC = () => {
             <h1 className={styles.title}>Resumen del seguro</h1>
             <Card>
               <div className={styles.information}>
-                <p className={styles.information__label}>Precios calculados para:</p>
+                <p className={styles.information__label}>
+                  Precios calculados para:
+                </p>
                 <div className={styles.information__header}>
-                  <img src={PeopleIcon} alt={`${summaryData.name} ${summaryData.lastName}`} />
-                  <h2>{summaryData.name} {summaryData.lastName}</h2>
+                  <img
+                    src={PeopleIcon}
+                    alt={`${summaryData.name} ${summaryData.lastName}`}
+                  />
+                  <h2>
+                    {summaryData.name} {summaryData.lastName}
+                  </h2>
                 </div>
                 <span className={styles.information__separator}></span>
                 <div className={styles.information__item}>
-                  <h3 className={styles.information__item__subtitle}>Responsable de pago</h3>
-                  <p>DNI: 444888888</p>
-                  <p>Celular: 5130216147</p>
+                  <h3 className={styles.information__item__subtitle}>
+                    Responsable de pago
+                  </h3>
+                  <p>DNI: {summaryData.document}</p>
+                  <p>Celular: {summaryData.phone}</p>
                 </div>
                 <div className={styles.information__item}>
-                  <h3 className={styles.information__item__subtitle}>Plan elegido</h3>
-                  <p>Plan en Casa y Clínica</p>
-                  <p>Costo del Plan: $99 al mes</p>
+                  <h3 className={styles.information__item__subtitle}>
+                    Plan elegido
+                  </h3>
+                  <p>{summaryData.plan.name}</p>
+                  <p>
+                    Costo del Plan: $
+                    {summaryData.plan.isForSomeone
+                      ? summaryData.plan.discountPrice
+                      : summaryData.plan.price}{" "}
+                    al mes
+                  </p>
                 </div>
               </div>
             </Card>
@@ -109,7 +143,7 @@ const Summary: React.FC = () => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
 export default Summary;

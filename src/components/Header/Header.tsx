@@ -1,6 +1,6 @@
-import RimacLogo from '@assets/logo-red.svg';
-import PhoneIcon from '@assets/phone.svg';
-import styles from './Header.module.scss';
+import RimacLogo from "@assets/logo-red.svg";
+import PhoneIcon from "@assets/phone.svg";
+import styles from "./Header.module.scss";
 
 const Header: React.FC = () => {
   return (

@@ -12,11 +12,11 @@ export type Plan = {
 
 export type PlansResponse = {
   list: PlanResponse[];
-}
+};
 
 export type PlanResponse = {
   name: string;
   price: number;
   description: string[];
   age: number;
-}
+};

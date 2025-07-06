@@ -1,11 +1,7 @@
-import type { ICheckBoxProps } from '../../types/components/checkbox';
-import styles from './CheckBox.module.scss';
+import type { ICheckBoxProps } from "../../types/components/checkbox";
+import styles from "./CheckBox.module.scss";
 
-const CheckBox: React.FC<ICheckBoxProps> = ({ 
-  label,
-  checked,
-  onChange
-}) => {
+const CheckBox: React.FC<ICheckBoxProps> = ({ label, checked, onChange }) => {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     onChange(event.target.checked);
   };
@@ -13,11 +9,11 @@ const CheckBox: React.FC<ICheckBoxProps> = ({
   return (
     <label className={styles.checkbox}>
       <span>{label}</span>
-      <input 
-        type="checkbox" 
+      <input
+        type="checkbox"
         checked={checked}
         onChange={handleChange}
-        className={styles.checkbox__input} 
+        className={styles.checkbox__input}
       />
       <span className={styles.checkbox__checkmark}></span>
     </label>

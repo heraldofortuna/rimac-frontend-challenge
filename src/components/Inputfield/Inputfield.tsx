@@ -1,14 +1,14 @@
-import { useState, useEffect } from 'react';
-import type { IInputFieldProps } from '../../types/components/inputfield';
-import styles from './InputField.module.scss';
+import { useState, useEffect } from "react";
+import type { IInputFieldProps } from "../../types/components/inputfield";
+import styles from "./InputField.module.scss";
 
-const InputField: React.FC<IInputFieldProps> = ({ 
-  name, 
-  type = 'text', 
-  label, 
-  maxLength, 
-  value: propValue = '', 
-  onChange 
+const InputField: React.FC<IInputFieldProps> = ({
+  name,
+  type = "text",
+  label,
+  maxLength,
+  value: propValue = "",
+  onChange,
 }) => {
   const [value, setValue] = useState(propValue);
 
@@ -19,9 +19,9 @@ const InputField: React.FC<IInputFieldProps> = ({
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = event.target.value;
     if (maxLength && newValue.length > maxLength) return;
-    
+
     setValue(newValue);
-    
+
     if (onChange) {
       onChange(event);
     }

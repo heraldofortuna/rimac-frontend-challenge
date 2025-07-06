@@ -1,5 +1,5 @@
-import type { IButtonProps } from '../../types/components/button';
-import styles from './Button.module.scss';
+import type { IButtonProps } from "../../types/components/button";
+import styles from "./Button.module.scss";
 
 const Button: React.FC<IButtonProps> = ({
   type = "button",
@@ -9,17 +9,17 @@ const Button: React.FC<IButtonProps> = ({
   isDisabled = false,
   isLoading = false,
   loadingText = "Cargando",
-  onClick = () => {}
+  onClick = () => {},
 }) => {
   const buttonClass = `${styles.button} ${styles[size]} ${styles[color]} ${
-    isDisabled ? styles.disabled : ''
-  } ${isLoading ? styles.loading : ''}`;
-  
+    isDisabled ? styles.disabled : ""
+  } ${isLoading ? styles.loading : ""}`;
+
   return (
-    <button 
-      type={type} 
+    <button
+      type={type}
       disabled={isDisabled || isLoading}
-      onClick={isDisabled || isLoading ? undefined : onClick} 
+      onClick={isDisabled || isLoading ? undefined : onClick}
       className={buttonClass}
     >
       {isLoading ? (
@@ -31,7 +31,7 @@ const Button: React.FC<IButtonProps> = ({
         text
       )}
     </button>
-  )
-}
+  );
+};
 
 export default Button;

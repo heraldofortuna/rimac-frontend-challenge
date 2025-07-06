@@ -20,5 +20,6 @@ export type Summary = {
     price: number;
     description: string[];
     age: number;
-  }
-}
+    isForSomeone: boolean;
+  };
+};
