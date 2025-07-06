@@ -1,14 +1,20 @@
 import BackArrowBlueIcon from '@assets/back-arrow-blue.svg';
 import BackArrowGrayIcon from '@assets/back-arrow-gray.svg';
+import PersonalOptionIcon from '@assets/personal-option.svg';
+import OtherPersonOptionIcon from '@assets/other-person-option.svg';
 import styles from './Pricing.module.scss';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import type { NavigationState } from '../../types/custom/navigation';
 import type { User } from '../../types/api/user';
+import { usePlans } from '../../hooks/usePlans';
+import Card from '../../components/Card';
+import Button from '../../components/Button';
 
 const Pricing: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const { plans, loading: plansLoading, error: plansError } = usePlans();
   const [userData, setUserData] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
@@ -24,12 +30,22 @@ const Pricing: React.FC = () => {
     setIsLoading(false);
   }, [location.state, navigate]);
 
-  if (isLoading) {
-    return <div className={styles.loading}>Cargando...</div>;
+  const isDataReady = !isLoading && !plansLoading && userData && plans;
+
+  if (isLoading || plansLoading) {
+    return <div className={styles.loading}>Cargando datos...</div>;
   }
 
   if (!userData) {
     return <div className={styles.error}>No se encontraron datos del usuario</div>;
+  }
+
+  if (plansError) {
+    return <div className={styles.error}>Error al cargar los planes: {plansError.message}</div>;
+  }
+
+  if (!plans || plans.length === 0) {
+    return <div className={styles.error}>No hay planes disponibles</div>;
   }
 
   return (
@@ -69,6 +85,55 @@ const Pricing: React.FC = () => {
           </div>
           <div></div>
         </div>
+
+        <section className={styles.options}>
+          <Card>
+            <div className={styles.option}>
+              <div className={styles.option__header}>
+                <img src={PersonalOptionIcon} alt="Cotiza tu seguro de salud y agrega familiares si así lo deseas." className={styles.option__header__icon} />
+                <h3 className={styles.option__header__text}>Para mi</h3>
+              </div>
+              <p className={styles.option__text}>Cotiza tu seguro de salud y agrega familiares si así lo deseas.</p>
+            </div>
+          </Card>
+          <Card>
+            <div className={styles.option}>
+              <div className={styles.option__header}>
+                <img src={OtherPersonOptionIcon} alt="Realiza una cotización para uno de tus familiares o cualquier persona." className={styles.option__header__icon} />
+                <h3 className={styles.option__header__text}>Para alguien más</h3>
+              </div>
+              <p className={styles.option__text}>Realiza una cotización para uno de tus familiares o cualquier persona.</p>
+            </div>
+          </Card>
+        </section>
+
+        {isDataReady && (
+          <div className={styles.plansContainer}>
+            <ul className={styles.plans}>
+              {plans.map(plan => (
+                <li key={plan.id} className={styles.plan}>
+                  <Card>
+                    <h3>{plan.name}</h3>
+                    <div>
+                      <p>Costo del plan</p>
+                      <p>${plan.price} al mes</p>
+                    </div>
+                    <ul className={styles.plan__list}>
+                      {plan.description.map(item => (
+                        <li>
+                          <div>
+                            <p>{item}</p>
+                          </div>
+                        </li>
+                      ))}
+                    </ul>
+                    <Button text="Seleccionar Plan" color='red' />
+                  </Card>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
     </div>
   )

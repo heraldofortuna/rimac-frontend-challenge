@@ -26,6 +26,7 @@
       &__text {
         font-size: 12px;
         font-weight: 600;
+        letter-spacing: 0.2px;
         display: none;
 
         @media (min-width: $breakpoint-desktop) {

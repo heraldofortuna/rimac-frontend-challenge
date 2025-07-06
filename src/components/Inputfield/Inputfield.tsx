@@ -1,13 +1,7 @@
-import styles from './Inputfield.module.scss';
+import type { IInputFieldProps } from '../../types/components/inputfield';
+import styles from './InputField.module.scss';
 
-interface IInputfieldProps {
-  name: string;
-  type: React.HTMLInputTypeAttribute;
-  label: string;
-  maxLength?: number;
-}
-
-const Inputfield: React.FC<IInputfieldProps> = ({ name, type, label, maxLength }) => {
+const InputField: React.FC<IInputFieldProps> = ({ name, type, label, maxLength }) => {
   return (
     <div className={styles.inputfield}>
       <label htmlFor={name} className={styles.inputfield__label}>{label}</label>
@@ -16,4 +10,4 @@ const Inputfield: React.FC<IInputfieldProps> = ({ name, type, label, maxLength }
   )
 }
 
-export default Inputfield;
+export default InputField;
