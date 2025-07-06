@@ -1,4 +1,4 @@
-import type { IButtonProps } from '@types/components/button';
+import type { IButtonProps } from '../../types/components/button';
 import styles from './Button.module.scss';
 
 const Button: React.FC<IButtonProps> = ({

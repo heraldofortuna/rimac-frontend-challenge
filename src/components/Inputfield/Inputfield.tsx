@@ -37,6 +37,7 @@ const InputField: React.FC<IInputFieldProps> = ({
         type={type}
         value={value}
         maxLength={maxLength}
+        autoComplete="off"
         onChange={handleChange}
         className={styles.inputfield__input}
       />
