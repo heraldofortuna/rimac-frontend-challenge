@@ -29,6 +29,22 @@ npm run dev
 
 Finalmente, ingresamos al siguiente enlace para poder ver en vivo nuestro proyecto en desarrollo.
 
+---
+
+## 📸 Capturas de pantalla y demostraciones
+
+Aquí puedes ver algunas imágenes y videos del proyecto en acción.
+
+### Demostración en video
+
+Mira este video para una demostración rápida de las funcionalidades clave.
+[![Demostración rápida de las funcionalidades clave](assets/youtube-thumbnail.jpg)](https://www.youtube.com/watch?v=YOUR_VIDEO_ID "Demostración rápida de las funcionalidades clave")
+### Rendimiento de la página
+
+Esta imagen muestra el rendimiento otorgado por Lighthouse de la aplicación.
+![Rendimiento otorgado por Lighthouse](assets/lighthouse-performance.png "Rendimiento de la aplicación")
+---
+
 ## 🛠️ Construido con
 
 - [React](https://v3.vuejs.org/) - El framework de frontend web que usamos.

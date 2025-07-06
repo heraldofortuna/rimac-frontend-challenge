@@ -6,7 +6,7 @@
   ],
   "compilerOptions": {
     "baseUrl": ".",
-    "types": ["vitest/globals"],
+    "types": ["vitest/globals", "testing-library__jest-dom"],
     "paths": {
       "@/*": ["src/*"],
       "@assets/*": ["src/assets/*"],
