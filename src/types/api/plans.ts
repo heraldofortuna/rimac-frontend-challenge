@@ -2,6 +2,8 @@ export type Plans = Array<Plan>;
 
 export type Plan = {
   id: string;
+  icon: string;
+  discountPrice: number;
   name: string;
   price: number;
   description: string[];
@@ -9,10 +11,12 @@ export type Plan = {
 };
 
 export type PlansResponse = {
-  list: {
-    name: string;
-    price: number;
-    description: string[];
-    age: number;
-  }[];
+  list: PlanResponse[];
+}
+
+export type PlanResponse = {
+  name: string;
+  price: number;
+  description: string[];
+  age: number;
 }

@@ -1,4 +1,4 @@
-import type { IButtonProps } from '../../types/components/button';
+import type { IButtonProps } from '@types/components/button';
 import styles from './Button.module.scss';
 
 const Button: React.FC<IButtonProps> = ({
@@ -7,13 +7,29 @@ const Button: React.FC<IButtonProps> = ({
   size = "medium",
   color = "black",
   isDisabled = false,
+  isLoading = false,
+  loadingText = "Cargando",
   onClick = () => {}
 }) => {
-  const buttonClass = `${styles.button} ${styles[size]} ${styles[color]}`;
+  const buttonClass = `${styles.button} ${styles[size]} ${styles[color]} ${
+    isDisabled ? styles.disabled : ''
+  } ${isLoading ? styles.loading : ''}`;
   
   return (
-    <button type={type} disabled={isDisabled} onClick={onClick} className={buttonClass}>
-      {text}
+    <button 
+      type={type} 
+      disabled={isDisabled || isLoading}
+      onClick={isDisabled || isLoading ? undefined : onClick} 
+      className={buttonClass}
+    >
+      {isLoading ? (
+        <>
+          <span className={styles.loader}></span>
+          {loadingText}
+        </>
+      ) : (
+        text
+      )}
     </button>
   )
 }

@@ -5,7 +5,7 @@ import { calculateAge } from '../utils/calculateAge';
 
 const useLazyUser = () => {
   const [user, setUser] = useState<User | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<Error | null>(null);
 
   const fetchUser = async () => {

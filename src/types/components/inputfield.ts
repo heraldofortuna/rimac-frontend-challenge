@@ -1,6 +1,8 @@
 export interface IInputFieldProps {
   name: string;
-  type: React.HTMLInputTypeAttribute;
+  type?: string;
   label: string;
   maxLength?: number;
+  value?: string;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }

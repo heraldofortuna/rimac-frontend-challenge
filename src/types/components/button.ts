@@ -1,8 +1,10 @@
 export interface IButtonProps {
-  type?: "button" | "submit" | "reset" | undefined;
+  type?: "button" | "submit" | "reset";
   text: string;
   size?: "small" | "medium" | "large";
   color?: "black" | "red";
-  isDisabled: boolean;
-  onClick?: React.MouseEventHandler<HTMLButtonElement> | undefined;
+  isDisabled?: boolean;
+  isLoading?: boolean;
+  loadingText?: string;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }

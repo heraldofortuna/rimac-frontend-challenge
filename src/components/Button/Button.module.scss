@@ -11,6 +11,11 @@
   border-radius: 40px;
   cursor: pointer;
   transition: all 0.3s ease;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 
   @media (min-width: $breakpoint-desktop) {
     width: fit-content;
@@ -40,7 +45,7 @@
     background-color: $grey-100-color;
     color: $grey-0-color;
     
-    &:hover {
+    &:not(:disabled):hover {
       background-color: $grey-60-color;
     }
   }
@@ -49,8 +54,68 @@
     background-color: $red-500-color;
     color: $grey-0-color;
     
-    &:hover {
+    &:not(:disabled):hover {
       background-color: $red-500-color;
+    }
+  }
+
+  // Estado disabled
+  &:disabled {
+    background-color: $grey-100-color;
+    color: $grey-0-color;
+    cursor: not-allowed;
+    opacity: 0.6;
+
+    &:hover {
+      background-color: $grey-100-color;
+    }
+  }
+
+ // Estado loading
+  &.loading {
+    pointer-events: none;
+  }
+
+  // Loader
+  .loader {
+    width: 18px;
+    height: 18px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: $grey-0-color;
+    animation: spin 1s ease-in-out infinite;
+    flex-shrink: 0;
+
+    .black & {
+      border-top-color: $grey-0-color;
+    }
+
+    .red & {
+      border-top-color: $grey-0-color;
+    }
+  }
+
+  // Animación del loader
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  // Ajustes para diferentes tamaños
+  &.small {
+    .loader {
+      width: 14px;
+      height: 14px;
+      border-width: 2px;
+    }
+  }
+
+  &.large {
+    .loader {
+      width: 18px;
+      height: 18px;
+      border-width: 3px;
     }
   }
 }

@@ -6,13 +6,24 @@ import styles from './Home.module.scss';
 import { useNavigate } from 'react-router-dom';
 import type { NavigationState } from '../../types/custom/navigation';
 import CheckBox from '../../components/CheckBox';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const Home: React.FC = () => {
   const navigate = useNavigate();
-  const { fetchUser } = useLazyUser();
+  const { fetchUser, loading: isLoadingButton } = useLazyUser();
+  const [document, setDocument] = useState<string>("");
+  const [phone, setPhone] = useState<string>("");
   const [isPrivacyChecked, setIsPrivacyChecked] = useState<boolean>(false);
   const [isComercialChecked, setIsComercialChecked] = useState<boolean>(false);
+  const [isButtonActive, setIsButtonActive]= useState<boolean>(false);
+
+  const handleDocumentChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setDocument(event.target.value);
+  }
+
+  const handlePhoneChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setPhone(event.target.value);
+  }
 
   const handleQuote = async () => {
     const userData = await fetchUser();
@@ -26,6 +37,11 @@ const Home: React.FC = () => {
       } satisfies NavigationState
     });
   }
+
+  useEffect(() => {
+    const isActiveButton = document.length === 8 && phone.length === 9 && isPrivacyChecked && isComercialChecked;
+    setIsButtonActive(isActiveButton);
+  }, [document, phone, isPrivacyChecked, isComercialChecked]);
 
   return (
     <div className={styles.home}>
@@ -53,15 +69,43 @@ const Home: React.FC = () => {
             handleQuote();
           }}>
             <div className={styles.inputs}>
-              <InputField name="document" type="number" label="Nro. de documento" maxLength={8} />
-              <InputField name="phone" type="number" label="Celular" maxLength={9} />
+              <InputField
+                name="document"
+                type="number"
+                label="Nro. de documento"
+                maxLength={8}
+                value={document}
+                onChange={handleDocumentChange}
+              />
+              <InputField
+                name="phone"
+                type="number"
+                label="Celular"
+                maxLength={9}
+                value={phone}
+                onChange={handlePhoneChange}
+              />
             </div>
             <div className={styles.tyc}>
-              <CheckBox label="Acepto lo Política de Privacidad" checked={isPrivacyChecked} onChange={setIsPrivacyChecked} />
-              <CheckBox label="Acepto la Política Comunicaciones Comerciales" checked={isComercialChecked} onChange={setIsComercialChecked} />
+              <CheckBox
+                label="Acepto lo Política de Privacidad"
+                checked={isPrivacyChecked}
+                onChange={setIsPrivacyChecked}
+              />
+              <CheckBox
+                label="Acepto la Política Comunicaciones Comerciales"
+                checked={isComercialChecked} 
+                onChange={setIsComercialChecked}
+              />
               <p className={styles.tyc__link}>Aplican Términos y Condiciones.</p>
             </div>
-            <Button type='submit' size='large' text="Cotiza aqui" />
+            <Button
+              type='submit'
+              size='large'
+              text="Cotiza aqui"
+              isDisabled={!isButtonActive}
+              isLoading={isLoadingButton}
+            />
           </form>
         </div>
       </div>
