@@ -1,6 +1,7 @@
 import BackArrowBlueIcon from "@assets/back-arrow-blue.svg";
 import BackArrowGrayIcon from "@assets/back-arrow-gray.svg";
 import PeopleIcon from "@assets/people.svg";
+import Button from "../../components/Button";
 import Card from "../../components/Card";
 import Loader from "../../components/Loader";
 import type { NavigationState, Summary } from "../../types/custom/navigation";
@@ -30,6 +31,10 @@ const SummaryPage: React.FC = () => {
       } satisfies NavigationState,
     });
   };
+
+  const handleReturnHome = () => {
+    navigate("/");
+  }
 
   useEffect(() => {
     const state = location.state as NavigationState | undefined;
@@ -139,6 +144,10 @@ const SummaryPage: React.FC = () => {
                 </div>
               </div>
             </Card>
+          </div>
+
+          <div className={styles.button}>
+            <Button text="Finalizar" onClick={handleReturnHome} />
           </div>
         </div>
       </div>
