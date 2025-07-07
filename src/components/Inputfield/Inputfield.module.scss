@@ -1,14 +1,33 @@
 .inputfield {
+  position: relative;
   display: flex;
   flex-direction: column;
   padding: 8px 16px;
   border: 1px solid $grey-60-color;
   border-radius: 8px;
+  transition: border-color 0.2s ease;
+
+  &:focus-within {
+    border: 1px solid $grey-100-color;
+  }
 
   &__label {
     color: $grey-60-color;
-    font-size: 12px;
-    line-height: 16px;
+    font-size: 16px;
+    line-height: 24px;
+    position: absolute;
+    top: 18px;
+    left: 16px;
+    transition: all 0.1s ease-out;
+    pointer-events: none;
+    transform-origin: left top;
+
+    &--float {
+      transform: translateY(-6px) scale(0.75);
+      font-size: 16px;
+      line-height: 16px;
+      color: $grey-60-color;
+    }
   }
 
   &__input {
@@ -16,10 +35,19 @@
     font-size: 16px;
     line-height: 24px;
     border: 0;
+    margin-top: 16px;
+    padding: 0;
 
     &:focus {
       border: 0;
       outline: 0;
+    }
+
+    &:not(:placeholder-shown) + .inputfield__label,
+    &:focus + .inputfield__label {
+      transform: translateY(-12px) scale(0.75);
+      font-size: 12px;
+      line-height: 16px;
     }
 
     &[type="number"] {

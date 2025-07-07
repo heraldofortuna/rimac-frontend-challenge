@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import type { IInputFieldProps } from "../../types/components/inputfield";
 import styles from "./Inputfield.module.scss";
 
@@ -11,6 +11,8 @@ const Inputfield: React.FC<IInputFieldProps> = ({
   onChange,
 }) => {
   const [value, setValue] = useState(propValue);
+  const [isFocused, setIsFocused] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     setValue(propValue);
@@ -36,12 +38,29 @@ const Inputfield: React.FC<IInputFieldProps> = ({
     onChange?.(event);
   };
 
+  const handleFocus = () => {
+    setIsFocused(true);
+  };
+
+  const handleBlur = () => {
+    setIsFocused(false);
+  };
+
+  const shouldLabelFloat = isFocused || value !== "";
+
   return (
     <div className={styles.inputfield}>
-      <label htmlFor={name} className={styles.inputfield__label}>
+      <label 
+        htmlFor={name} 
+        className={`${styles.inputfield__label} ${
+          shouldLabelFloat ? styles["inputfield__label--float"] : ""
+        }`}
+        onClick={() => inputRef.current?.focus()}
+      >
         {label}
       </label>
       <input
+        ref={inputRef}
         id={name}
         name={name}
         type={type}
@@ -49,6 +68,8 @@ const Inputfield: React.FC<IInputFieldProps> = ({
         maxLength={maxLength}
         autoComplete="off"
         onChange={handleChange}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
         className={styles.inputfield__input}
       />
     </div>

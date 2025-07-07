@@ -3,17 +3,17 @@
 exports[`InputField component > matches snapshot with default props 1`] = `
 <DocumentFragment>
   <div
-    class="_inputfield_93fded"
+    class="_inputfield_9ac07b"
   >
     <label
-      class="_inputfield__label_93fded"
+      class="_inputfield__label_9ac07b "
       for="test-input"
     >
       Test Label
     </label>
     <input
       autocomplete="off"
-      class="_inputfield__input_93fded"
+      class="_inputfield__input_9ac07b"
       id="test-input"
       name="test-input"
       type="text"
@@ -26,17 +26,17 @@ exports[`InputField component > matches snapshot with default props 1`] = `
 exports[`InputField component > matches snapshot with value and maxLength 1`] = `
 <DocumentFragment>
   <div
-    class="_inputfield_93fded"
+    class="_inputfield_9ac07b"
   >
     <label
-      class="_inputfield__label_93fded"
+      class="_inputfield__label_9ac07b _inputfield__label--float_9ac07b"
       for="test-input"
     >
       Test Label
     </label>
     <input
       autocomplete="off"
-      class="_inputfield__input_93fded"
+      class="_inputfield__input_9ac07b"
       id="test-input"
       maxlength="20"
       name="test-input"
