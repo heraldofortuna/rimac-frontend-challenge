@@ -1,4 +1,4 @@
-export const calculateAge = (birthDateString: string): number => {
+function calculateAge(birthDateString: string): number {
   if (!birthDateString) return 0;
 
   const [day, month, year] = birthDateString.split("-").map(Number);
@@ -36,3 +36,6 @@ export const calculateAge = (birthDateString: string): number => {
 
   return age < 0 ? 0 : age;
 };
+
+
+export default calculateAge;

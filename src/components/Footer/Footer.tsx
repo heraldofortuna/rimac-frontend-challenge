@@ -1,6 +1,8 @@
 import RimacLogo from "@assets/logo-white.svg";
 import RimacMobileLogo from "@assets/logo-mobile-white.svg";
 import styles from "./Footer.module.scss";
+import getCurrentYear from "../../utils/getCurrentYear/getCurrentYear";
+const currentYear = getCurrentYear();
 
 const Footer: React.FC = () => {
   return (
@@ -17,7 +19,7 @@ const Footer: React.FC = () => {
           className={styles["logo--desktop"]}
         />
         <span className={styles.separator}></span>
-        <p className={styles.text}>© 2023 RIMAC Seguros y Reaseguros.</p>
+        <p className={styles.text}>© {currentYear} RIMAC Seguros y Reaseguros.</p>
       </div>
     </footer>
   );

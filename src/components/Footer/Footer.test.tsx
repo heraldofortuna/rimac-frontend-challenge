@@ -2,6 +2,7 @@ import { describe, it, expect, vi, beforeEach } from "vitest";
 import { render, screen } from "@testing-library/react";
 import Footer from "./Footer";
 import styles from "./Footer.module.scss";
+import getCurrentYear from "../../utils/getCurrentYear/getCurrentYear";
 
 vi.mock("@assets/logo-white.svg", () => ({
   default: "rimac-logo-white.svg",
@@ -51,8 +52,9 @@ describe("Footer Component", () => {
   });
 
   it("displays the correct copyright text", () => {
+    const currentYear = getCurrentYear();
     const copyrightText = screen.getByText(
-      "© 2023 RIMAC Seguros y Reaseguros.",
+      `© ${currentYear} RIMAC Seguros y Reaseguros.`,
     );
     expect(copyrightText).toBeInTheDocument();
     expect(copyrightText).toHaveClass(styles.text);

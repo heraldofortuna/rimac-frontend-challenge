@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { UserService } from "../services/user.service";
 import type { User } from "../types/api/user";
-import { calculateAge } from "../utils/calculateAge";
+import calculateAge from "../utils/calculateAge/calculateAge";
 
 const useLazyUser = () => {
   const [user, setUser] = useState<User | null>(null);
